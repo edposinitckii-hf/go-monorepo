@@ -1,4 +1,4 @@
-module github.com/edposinitckii-hf/monorepo/services
+module github.com/edposinitckii-hf/monorepo/svc
 
 go 1.16
 
