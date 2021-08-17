@@ -2,7 +2,7 @@ name: "unit tests for GO project"
 description: "Runs unit tests for GO project"
 runs:
   using: docker
-  image: docker://go:1.16
+  image: docker://golang:1.16
   args:
     - make
     - test-integration
