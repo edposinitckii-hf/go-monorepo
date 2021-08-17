@@ -4,6 +4,8 @@ on:
     paths:
       - 'toolkit/**'
       - 'Makefile.go.mk'
+      - '.github/workflows/toolkit*'
+      - '.github/action/go-*'
 defaults:
   run:
     working-directory: toolbox
