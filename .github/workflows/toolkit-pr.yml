@@ -1,6 +1,6 @@
 name: toolkit-pull-request
 on:
-  pull_request:
+  push:
     paths:
       - 'toolkit/**'
 defaults:
