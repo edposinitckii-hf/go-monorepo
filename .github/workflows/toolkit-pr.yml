@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'toolkit/**'
+      - 'Makefile.go.mk'
 defaults:
   run:
     working-directory: toolbox
