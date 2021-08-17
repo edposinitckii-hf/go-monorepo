@@ -4,5 +4,6 @@ runs:
   using: docker
   image: docker://golang:1.16
   args:
-    - make
-    - test-integration
+    - sh
+    - -c
+    - 'pwd && make test-integration'
