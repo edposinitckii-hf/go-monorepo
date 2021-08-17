@@ -1,0 +1,19 @@
+name: toolkit-pull-request
+on:
+  pull_request:
+    paths:
+      - 'toolkit/**'
+defaults:
+  run:
+    working-directory: toolbox
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/go-test-unit
+  run-integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/go-integration-unit

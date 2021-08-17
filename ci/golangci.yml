@@ -1,5 +1,3 @@
-# The default golangci-lint for HelloFresh
-# This file is used when no golangci.yml, .golangci.toml or .golangci.json is found in the repo.
 # See https://golangci-lint.run/usage/configuration/#config-file for more information
 run:
   timeout: 5m
