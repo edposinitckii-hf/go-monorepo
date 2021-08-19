@@ -15,15 +15,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/go-test-unit
         with:
-          workdir: '${{ env.toolbox }}'
+          workdir: '${{ env.workdir }}'
       - uses: golangci/golangci-lint-action@v2
         with:
-          working-directory: '${{ env.toolbox }}'
-          args: '--config ../ci/golangci.yml'
+          working-directory: '${{ env.workdir }}'
+          args: '--config "${GITHUB_WORKSPACE}/ci/golangci.yml"'
   run-integration-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/go-test-integration
         with:
-          workdir: '${{ env.toolbox }}'
+          workdir: '${{ env.workdir }}'
