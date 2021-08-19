@@ -7,7 +7,7 @@ on:
       - '.github/workflows/toolkit*'
       - '.github/action/go-*'
 env:
-  workdir: 'toolbox'
+  workdir: 'toolkit'
 jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
