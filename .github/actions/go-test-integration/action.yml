@@ -1,9 +1,13 @@
 name: "unit tests for GO project"
 description: "Runs unit tests for GO project"
+inputs:
+  workdir:
+    description: 'Working directory of the service under test'
+    required: true
 runs:
   using: docker
   image: docker://golang:1.16
   args:
     - sh
     - -c
-    - 'pwd && make test-integration'
+    - 'cd ${{ inputs.workdir }} && make test-integration'
