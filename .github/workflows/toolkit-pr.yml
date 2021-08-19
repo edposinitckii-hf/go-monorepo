@@ -8,7 +8,16 @@ on:
       - '.github/actions/go-*'
 env:
   workdir: 'toolkit'
+  goversion: '1.16'
 jobs:
+  run-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: golangci/golangci-lint-action@v2
+        with:
+          working-directory: '${{ env.workdir }}'
+          args: '--config "${GITHUB_WORKSPACE}/ci/golangci.yml"'
   run-unit-tests:
     runs-on: ubuntu-latest
     steps:
@@ -16,10 +25,7 @@ jobs:
       - uses: ./.github/actions/go-test-unit
         with:
           workdir: '${{ env.workdir }}'
-      - uses: golangci/golangci-lint-action@v2
-        with:
-          working-directory: '${{ env.workdir }}'
-          args: '--config "${GITHUB_WORKSPACE}/ci/golangci.yml"'
+          goversion: '${{ env.goversion }}'
   run-integration-tests:
     runs-on: ubuntu-latest
     steps:
@@ -27,3 +33,4 @@ jobs:
       - uses: ./.github/actions/go-test-integration
         with:
           workdir: '${{ env.workdir }}'
+          goversion: '${{ env.goversion }}'

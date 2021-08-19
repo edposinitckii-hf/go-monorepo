@@ -4,9 +4,12 @@ inputs:
   workdir:
     description: 'Working directory of the service under test'
     required: true
+  goversion:
+    description: 'Go version to run tests with'
+    required: true
 runs:
   using: docker
-  image: docker://golang:1.16
+  image: 'docker://golang:${{ inputs.goversion }}'
   args:
     - sh
     - -c
