@@ -5,7 +5,7 @@ on:
       - 'toolkit/**'
       - 'Makefile.go.mk'
       - '.github/workflows/toolkit*'
-      - '.github/action/go-*'
+      - '.github/actions/go-*'
 env:
   workdir: 'toolkit'
 jobs:
