@@ -8,9 +8,6 @@ on:
       - '.github/action/go-*'
 env:
   workdir: 'toolbox'
-defaults:
-  run:
-    working-directory: '${{ env.toolbox }}'
 jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
