@@ -8,7 +8,10 @@ on:
       - '.github/actions/go-*'
 env:
   workdir: 'toolkit'
-  goversion: '1.16'
+  go-version: '1.16'
+defaults:
+  run:
+    shell: bash
 jobs:
   run-linter:
     runs-on: ubuntu-latest
@@ -22,15 +25,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/go-test-unit
+      - uses: actions/setup-go@v2
         with:
-          workdir: '${{ env.workdir }}'
-          goversion: '${{ env.goversion }}'
+          go-version: '${{ env.goversion }}'
+      - run: make test-unit
+        working-directory: '${{ env.workdir }}'
   run-integration-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/go-test-integration
+      - uses: actions/setup-go@v2
         with:
-          workdir: '${{ env.workdir }}'
-          goversion: '${{ env.goversion }}'
+          go-version: '${{ env.goversion }}'
+      - run: make test-unit
+        working-directory: '${{ env.workdir }}'
