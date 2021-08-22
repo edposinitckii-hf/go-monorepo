@@ -4,5 +4,5 @@
 
 build: CGO = 0
 build: DIR_OUT=$(CURDIR)/out
-build:
-	$(call build-image,echo-api,$(CURDIR)/cmd/api/...)
+build: vendor
+	$(call build-image,echo-server,$(CURDIR)/cmd/api/...)

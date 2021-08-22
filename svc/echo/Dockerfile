@@ -40,7 +40,7 @@ APT::Install-Recommends "false";\n\
         /usr/share/locale/
 
 # Copy complied binary
-COPY --from=builder /go/src/github.com/monorepo/svc/echo/out/echo-api /bin/
+COPY --from=builder /go/src/github.com/monorepo/svc/echo/out/echo-server /bin/
 
 # Run app and expose port
 ARG PORT=8000
