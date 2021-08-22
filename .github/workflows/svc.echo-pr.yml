@@ -1,15 +1,12 @@
-name: service-echo-test
+name: service-echo-pr
 on:
   pull_request:
     paths:
       - 'svc/echo/**'
-      - '.github/workflows/svc.echo-test.yml'
-  push:
-    paths:
-      - 'svc/echo/**'
       - 'toolkit/**'
       - 'Makefile.go.mk'
-      - '.github/workflows/svc.echo-test.yml'
+      - '.github/workflows/svc.echo-pr.yml'
+      - '.github/actions/derive-pr-number/action.yml'
 
 env:
   workdir: 'svc/echo'
@@ -51,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: 'pr-number-extractor'
-        uses: ./.github/derive-pr-number
+        uses: ./.github/actions/derive-pr-number
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Build image
