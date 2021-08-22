@@ -6,3 +6,7 @@ test-unit: vendor
 
 test-integration: vendor
 	go test -v -run Integration -tags integration -race ./...
+
+define build-image
+	CGO_ENABLED=${CGO} go build -o ${DIR_OUT}/${BINARY} ${GO_LINKER_FLAGS} ${BINARY_SRC}
+endef
