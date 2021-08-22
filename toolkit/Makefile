@@ -1,1 +1,1 @@
--include ../Makefile.go.mk
+-include ../Makefile

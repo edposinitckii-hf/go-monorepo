@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - 'toolkit/**'
-      - 'Makefile.go.mk'
+      - 'Makefile'
       - '.github/workflows/toolkit*'
       - '.github/actions/go-*'
 env:
@@ -13,7 +13,7 @@ defaults:
   run:
     shell: bash
 jobs:
-  run-linter:
+  linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
         with:
           working-directory: '${{ env.workdir }}'
           args: '--config "${GITHUB_WORKSPACE}/ci/golangci.yml"'
-  run-unit-tests:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,12 +30,12 @@ jobs:
           go-version: '${{ env.goversion }}'
       - run: make test-unit
         working-directory: '${{ env.workdir }}'
-  run-integration-tests:
+  integration-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
           go-version: '${{ env.goversion }}'
-      - run: make test-unit
+      - run: make test-integration
         working-directory: '${{ env.workdir }}'
