@@ -9,6 +9,7 @@ on:
       - 'svc/echo/**'
       - 'toolkit/**'
       - 'Makefile.go.mk'
+      - '.github/workflows/svc.echo-test.yml'
 
 env:
   workdir: 'svc/echo'
