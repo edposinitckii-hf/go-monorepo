@@ -1,4 +1,4 @@
--include ../../Makefile.go.mk
+-include ../../Makefile
 
 .PHONY: test-unit test-integration build
 

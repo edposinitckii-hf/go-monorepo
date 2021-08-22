@@ -4,7 +4,7 @@ on:
     paths:
       - 'svc/echo/**'
       - 'toolkit/**'
-      - 'Makefile.go.mk'
+      - 'Makefile'
       - '.github/workflows/svc.echo-pr.yml'
 env:
   workdir: 'svc/echo'
@@ -51,6 +51,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: '${{ env.workdir }}'
+          file: '${{ env.workdir }}/Dockerfile'
           push: false # should push in real example
           tags: 'svc/echo:PR-${{ github.event.pull_request.number }}'

@@ -1,15 +1,29 @@
+# Monorepo args
+ARG REPO=${GOPATH}/src/github.com/monorepo
+ARG SVC_PATH=svc/echo
+
 FROM golang:1.16 AS builder
+
+# Monorepo args
+ARG REPO
+ARG SVC_PATH
 
 # Args
 ARG VERSION
 ENV VERSION ${VERSION}
 
 # Make app
-WORKDIR $GOPATH/src/github.com/monorepo/svc/echo
+WORKDIR ${REPO}
 COPY . ./
+
+WORKDIR ${REPO}/${SVC_PATH}
 RUN make build
 
 FROM ubuntu:bionic
+
+# Monorepo args
+ARG REPO
+ARG SVC_PATH
 
 # add Certs
 RUN set -ex \
@@ -40,10 +54,10 @@ APT::Install-Recommends "false";\n\
         /usr/share/locale/
 
 # Copy complied binary
-COPY --from=builder /go/src/github.com/monorepo/svc/echo/out/echo-server /bin/
+COPY --from=builder ${REPO}/${SVC_PATH}/out/echo-server /bin/
 
 # Run app and expose port
-ARG PORT=8000
+ARG PORT=9001
 EXPOSE ${PORT}
 
-ENTRYPOINT ["/bin/echo-api"]
+ENTRYPOINT ["/bin/echo-server"]

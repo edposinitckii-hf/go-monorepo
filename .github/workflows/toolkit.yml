@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - 'toolkit/**'
-      - 'Makefile.go.mk'
+      - 'Makefile'
       - '.github/workflows/toolkit*'
       - '.github/actions/go-*'
 env:
