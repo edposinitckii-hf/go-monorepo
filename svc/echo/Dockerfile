@@ -1,17 +1,12 @@
 FROM golang:1.16 AS builder
 
-# Add Tokens
-ARG GITHUB_TOKEN
-ENV GITHUB_TOKEN=${GITHUB_TOKEN}
-
+# Args
 ARG VERSION
 ENV VERSION ${VERSION}
 
 # Make app
 WORKDIR $GOPATH/src/github.com/monorepo/svc/echo
 COPY . ./
-
-# make app
 RUN make build
 
 FROM ubuntu:bionic
@@ -47,7 +42,7 @@ APT::Install-Recommends "false";\n\
 # Copy complied binary
 COPY --from=builder /go/src/github.com/monorepo/svc/echo/out/echo-api /bin/
 
-#Run app and expose port
+# Run app and expose port
 ARG PORT=8000
 EXPOSE ${PORT}
 
